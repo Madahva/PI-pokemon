@@ -1,5 +1,5 @@
 .obsidian
-.npmrc
+*.npmrc
 
 # Logs
 logs
