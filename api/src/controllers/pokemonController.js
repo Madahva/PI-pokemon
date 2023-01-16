@@ -1,7 +1,27 @@
 const { Pokemon } = require("../db.js");
 
-/* const getAllBichos = async () => {
-  const bichos = await Pokemon.findAll({
-    i
-  })
-} */
+const createBicho = async (
+  name,
+  vida,
+  ataque,
+  defensa,
+  velocidad,
+  altura,
+  peso
+) => {
+  const newBicho = await Pokemon.create({
+    name,
+    vida,
+    ataque,
+    defensa,
+    velocidad,
+    altura,
+    peso,
+  });
+  
+  return newBicho;
+};
+
+module.exports = {
+  createBicho,
+};
