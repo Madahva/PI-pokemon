@@ -1,22 +1,22 @@
 const { Pokemon } = require("../db.js");
 
 const createBicho = async (
-  name,
-  vida,
-  ataque,
-  defensa,
-  velocidad,
-  altura,
-  peso
+    name,
+    health,
+    attack,
+    defense,
+    speed,
+    height,
+    weight
 ) => {
   const newBicho = await Pokemon.create({
     name,
-    vida,
-    ataque,
-    defensa,
-    velocidad,
-    altura,
-    peso,
+    health,
+    attack,
+    defense,
+    speed,
+    height,
+    weight
   });
   
   return newBicho;

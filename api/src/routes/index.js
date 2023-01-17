@@ -7,18 +7,17 @@ router.get("/pokemon", (req, res) => {
 });
 
 router.post("/pokemon", async (req, res) => {
-  const { name, vida, ataque, defensa, velocidad, altura, peso } = req.body;
+  const { name, health, attack, defense, speed, height, weight } = req.body;
 
- console.log(req.body) 
 
   const newBicho = await createBicho(
     name,
-    vida,
-    ataque,
-    defensa,
-    velocidad,
-    altura,
-    peso
+    health,
+    attack,
+    defense,
+    speed,
+    height,
+    weight,
   );
   res.status(200).json(newBicho);
 });
