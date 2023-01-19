@@ -13,7 +13,7 @@ module.exports = (sequelize) => {
 
       name: {
         allowNull: false,
-        defaultValue: ["???"],
+        defaultValue: ["unknown"],
         type: DataTypes.STRING,
         unique: true,
       },

@@ -34,8 +34,8 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 const { Pokemon, Type } = sequelize.models;
 
-Pokemon.belongsToMany(Type, { through: "pokemon_type" });
-Type.belongsToMany(Pokemon, { through: "pokemon_type" });
+Pokemon.belongsToMany(Type, { through: "pokemonType" });
+Type.belongsToMany(Pokemon, { through: "pokemonType" });
 
 module.exports = {
   ...sequelize.models,
