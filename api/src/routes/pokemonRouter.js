@@ -1,20 +1,14 @@
 const { Router } = require("express");
-const { Pokemon, Type } = require("../db.js");
-const { createBicho } = require("../controllers/pokemonController.js");
+const {
+  createBicho,
+  getAllBichos,
+} = require("../controllers/pokemonController.js");
 
 const pokemonRouter = Router();
 
 pokemonRouter.get("/", async (req, res) => {
-  const bichos = await Pokemon.findAll({
-    include: {
-      model: Type,
-      through: {
-        attributes: [],
-      },
-    },
-  });
-
-  res.status(200).send(bichos)
+  const allBichos = await getAllBichos();
+  res.status(200).send(allBichos);
 });
 
 pokemonRouter.post("/", async (req, res) => {
@@ -42,13 +36,9 @@ pokemonRouter.post("/", async (req, res) => {
       defense,
       speed,
       height,
-      weight
+      weight,
+      types
     );
-
-    const typesDb = await Type.create({
-      name: types,
-    });
-    newBicho.addTypes(typesDb);
 
     res.status(200).json(newBicho);
   } catch (error) {
