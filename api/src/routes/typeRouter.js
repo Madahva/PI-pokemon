@@ -4,18 +4,17 @@ const { getTypes } = require("../controllers/typeController.js");
 const typeRouter = Router();
 
 typeRouter.get("/", async (req, res) => {
-  const types = await getTypes();
-  res.status(200).send(types);
+  try {
+    const types = await getTypes();
+
+    if (typeof types == "string") {
+      res.status(500).send(types);
+    } else {
+      res.status(200).send(types);
+    }
+  } catch (error) {
+    res.status(500).send({ error: error.message });
+  }
 });
-
-typeRouter.post("/", async (req, res) => {
-  const { name } = req.body
-  
-  const newType = await Type.create({
-    name,
-  })
-
-  res.status(200).send(newType)
-})
 
 module.exports = typeRouter;

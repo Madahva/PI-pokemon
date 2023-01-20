@@ -7,14 +7,17 @@ async function getTypes() {
     return typesDb;
   }
 
-  fetch("https://pokeapi.co/api/v2/type/")
-    .then((response) => response.json())
-    .then((data) => {
-      for (const type of data.results) {
-        Type.create({ name: type.name });
-      }
-    });
-
+  try {
+    await fetch("https://pokeapi.co/api/v2/type/")
+      .then((response) => response.json())
+      .then((data) => {
+        for (const type of data.results) {
+          Type.create({ name: type.name });
+        }
+      });
+  } catch (error) {
+    return error.message;
+  }
 }
 
 module.exports = { getTypes };
