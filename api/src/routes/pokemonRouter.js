@@ -16,7 +16,12 @@ pokemonRouter.get("/", async (req, res) => {
     } else {
       bichos = await getAllBichos();
     }
-    res.status(200).send(bichos);
+
+    if (!bichos) {
+      res.status(500).send("Bicho Not Found");
+    } else {
+      res.status(200).send(bichos);
+    }
   } catch (err) {
     console.log(err);
     res.status(500).send(err);

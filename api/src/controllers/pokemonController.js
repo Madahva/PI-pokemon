@@ -1,7 +1,6 @@
 const { Pokemon, Type } = require("../db.js");
 
 const getAllBichos = async () => {
-  
   //Obtenemos los bichos de la API
   let bichosApi = [];
 
@@ -51,13 +50,47 @@ const getAllBichos = async () => {
 };
 
 const getBichoByName = async (name) => {
-  //validar y agregar el tipo
+  //Obtenemos el bicho de la API mediante el Nombre
 
-  const bicho = await Pokemon.findOne({
+  let bichoApi;
+
+  try {
+    await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
+      .then((response) => response.json())
+      .then(async (data) => {
+        bichoApi = {
+          id: data.id,
+          name: data.name,
+          image: data.sprites.other["official-artwork"].front_default,
+          hp: data.stats[0].base_stat,
+          attack: data.stats[1].base_stat,
+          defense: data.stats[2].base_stat,
+          speed: data.stats[5].base_stat,
+          height: data.height,
+          weight: data.weight,
+          type: data.types.map((t) => {
+            return {
+              name: t.type.name,
+            };
+          }),
+        };
+      });
+  } catch (error) {
+    console.log({ error: "Bicho Not Found" });
+  }
+
+  //Obtenemos el bicho de la DB mediante el Nombre
+  const bichoDb = await Pokemon.findOne({
     where: { name: name.toLowerCase() },
+    include: {
+      model: Type,
+      through: {
+        attributes: [],
+      },
+    },
   });
 
-  return bicho;
+  return bichoDb || bichoApi;
 };
 
 const createBicho = async (
@@ -70,6 +103,9 @@ const createBicho = async (
   weight,
   types
 ) => {
+
+  //TODO: Validar que no se pueda crear bichos cn nombres existentes en la API
+
   //Creamos el bicho en la DB
   const newBicho = await Pokemon.create({
     name: name.toLocaleLowerCase(),
