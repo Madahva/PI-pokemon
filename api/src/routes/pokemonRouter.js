@@ -57,7 +57,11 @@ pokemonRouter.post("/", async (req, res) => {
       types
     );
 
-    res.status(200).json(newBicho);
+    if (newBicho === "error") {
+      res.status(500).send({ error: "Nombre no disponible" });
+    } else {
+      res.status(200).json(newBicho);
+    }
   } catch (error) {
     res.status(500).send({ error: error.message });
   }

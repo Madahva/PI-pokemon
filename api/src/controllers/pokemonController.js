@@ -103,29 +103,33 @@ const createBicho = async (
   weight,
   types
 ) => {
+  //Verificamos que ese nombre este disponible en la API
+  const alreadyExists = await getBichoByName(name);
 
-  //TODO: Validar que no se pueda crear bichos cn nombres existentes en la API
-
-  //Creamos el bicho en la DB
-  const newBicho = await Pokemon.create({
-    name: name.toLocaleLowerCase(),
-    health: parseInt(health),
-    attack: parseInt(attack),
-    defense: parseInt(defense),
-    speed: parseInt(speed),
-    height: parseInt(height),
-    weight: parseInt(weight),
-  });
-
-  //Le asignamos el tipo
-  types.forEach(async (type) => {
-    let typesDb = await Type.findAll({
-      where: { name: type },
+  if (!alreadyExists) {
+    //Creamos el bicho en la DB
+    const newBicho = await Pokemon.create({
+      name: name.toLocaleLowerCase(),
+      health: parseInt(health),
+      attack: parseInt(attack),
+      defense: parseInt(defense),
+      speed: parseInt(speed),
+      height: parseInt(height),
+      weight: parseInt(weight),
     });
-    newBicho.addTypes(typesDb);
-  });
 
-  return newBicho;
+    //Le asignamos el tipo
+    types.forEach(async (type) => {
+      let typesDb = await Type.findAll({
+        where: { name: type },
+      });
+      newBicho.addTypes(typesDb);
+    });
+
+    return newBicho;
+  } else {
+    return "error";
+  }
 };
 
 module.exports = {
