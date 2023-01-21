@@ -3,6 +3,7 @@ const {
   createBicho,
   getAllBichos,
   getBichoByName,
+  getBichoById,
 } = require("../controllers/pokemonController.js");
 
 const pokemonRouter = Router();
@@ -22,9 +23,24 @@ pokemonRouter.get("/", async (req, res) => {
     } else {
       res.status(200).send(bichos);
     }
-  } catch (err) {
-    console.log(err);
-    res.status(500).send(err);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
+pokemonRouter.get("/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const bicho = await getBichoById(id);
+
+    if (!bicho) {
+      res.status(500).send("Bicho Not Found 👀");
+    } else {
+      res.status(200).send(bicho);
+    }
+  } catch (error) {
+    res.status(500).send(error);
   }
 });
 

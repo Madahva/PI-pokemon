@@ -132,8 +132,41 @@ const createBicho = async (
   }
 };
 
+const getBichoById = async (id) => {
+  
+  let bichoApi
+
+  try {
+    await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
+      .then((response) => response.json())
+      .then(async (data) => {
+        bichoApi = {
+          id: data.id,
+          name: data.name,
+          image: data.sprites.other["official-artwork"].front_default,
+          hp: data.stats[0].base_stat,
+          attack: data.stats[1].base_stat,
+          defense: data.stats[2].base_stat,
+          speed: data.stats[5].base_stat,
+          height: data.height,
+          weight: data.weight,
+          type: data.types.map((t) => {
+            return {
+              name: t.type.name,
+            };
+          }),
+        };
+      });
+  } catch (error) {
+    console.log({ error: "Bicho Not Found" });
+  }
+
+  return bichoApi
+}
+
 module.exports = {
   createBicho,
   getAllBichos,
   getBichoByName,
+  getBichoById,
 };
