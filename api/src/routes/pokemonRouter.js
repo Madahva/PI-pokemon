@@ -2,13 +2,25 @@ const { Router } = require("express");
 const {
   createBicho,
   getAllBichos,
+  getBichoByName,
 } = require("../controllers/pokemonController.js");
 
 const pokemonRouter = Router();
 
 pokemonRouter.get("/", async (req, res) => {
-  const allBichos = await getAllBichos();
-  res.status(200).send(allBichos);
+  const { name } = req.query;
+
+  try {
+    if (name) {
+      bichos = await getBichoByName(name);
+    } else {
+      bichos = await getAllBichos();
+    }
+    res.status(200).send(bichos);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send(err);
+  }
 });
 
 pokemonRouter.post("/", async (req, res) => {
