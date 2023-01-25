@@ -1,10 +1,17 @@
 const { Pokemon, Type } = require("../db.js");
 
+const headers = new Headers();
+headers.append("Accept-Encoding", "null");
+
+
 const getAllBichos = async () => {
   //Obtenemos los bichos de la API
   let bichosApi = [];
 
-  await fetch("https://pokeapi.co/api/v2/pokemon?limit=40")
+  await fetch("https://pokeapi.co/api/v2/pokemon?limit=40", {
+      method: "GET",
+      headers: headers
+  })
     .then((response) => response.json())
     .then(async (data) => {
       const pokemonPromises = data.results.map(async (pokemon) => {
@@ -23,7 +30,7 @@ const getAllBichos = async () => {
               speed: p.stats[5].base_stat,
               height: p.height,
               weight: p.weight,
-              type: p.types.map((t) => {
+              types: p.types.map((t) => {
                 return {
                   name: t.type.name,
                 };
@@ -46,7 +53,7 @@ const getAllBichos = async () => {
     },
   });
 
-  return [...bichosApi, bichosDb];
+  return [...bichosApi, ...bichosDb];
 };
 
 const getBichoByName = async (name) => {
@@ -68,7 +75,7 @@ const getBichoByName = async (name) => {
           speed: data.stats[5].base_stat,
           height: data.height,
           weight: data.weight,
-          type: data.types.map((t) => {
+          types: data.types.map((t) => {
             return {
               name: t.type.name,
             };
@@ -133,8 +140,7 @@ const createBicho = async (
 };
 
 const getBichoById = async (id) => {
-  
-  let bichoApi
+  let bichoApi;
 
   try {
     await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
@@ -161,8 +167,8 @@ const getBichoById = async (id) => {
     console.log({ error: "Bicho Not Found" });
   }
 
-  return bichoApi
-}
+  return bichoApi;
+};
 
 module.exports = {
   createBicho,

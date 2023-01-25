@@ -51,10 +51,10 @@ module.exports = (sequelize) => {
         type: DataTypes.INTEGER,
       },
 
-      /* image: {
-        defaultValue: "https://i.imgur.com/bZfY4Fr.png",
+       image: {
+         defaultValue: "https://freepngimg.com/thumb/digimon/30180-8-digimon-transparent-image.png",
         type: DataTypes.STRING,
-      },*/
+      },
     },
 
     {
