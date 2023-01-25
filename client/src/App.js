@@ -1,5 +1,5 @@
 import "./assets/styles/App.css";
-import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Nav from "./components/Nav.jsx"
 import LandingPage from "./components/LandingPage.jsx";
 import Home from "./components/Home.jsx";
