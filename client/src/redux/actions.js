@@ -7,13 +7,14 @@ export const GO_TO_PAGE = "GO_TO_PAGE";
 export const SET_TOTAL_PAGES = "SET_TOTAL_PAGES";
 
 export const SEARCH_BY_NAME = "SEARCH_BY_NAME";
+export const GET_API_POKEMONS = "GET_API_POKEMONS";
+export const GET_DB_POKEMONS = "GET_DB_POKEMONS";
 
 export const getAllPokemons = () => {
   return async function (dispatch) {
     try {
       const response = await fetch("http://localhost:3001/pokemon");
       const data = await response.json();
-      console.log(data)
       dispatch({
         type: GET_ALL_POKEMONS,
         payload: data,
@@ -41,26 +42,26 @@ export const getAllTypes = () => {
 
 export const prevPage = () => {
   return {
-    type: "PREV_PAGE",
+    type: PREV_PAGE,
   };
 };
 
 export const nextPage = () => {
   return {
-    type: "NEXT_PAGE",
+    type: NEXT_PAGE,
   };
 };
 
 export const goToPage = (pageNumber) => {
   return {
-    type: "GO_TO_PAGE",
+    type: GO_TO_PAGE,
     payload: pageNumber,
   };
 };
 
 export const setTotalPages = (totalPages) => {
   return {
-    type: "SET_TOTAL_PAGES",
+    type: SET_TOTAL_PAGES,
     payload: totalPages,
   };
 };
@@ -68,14 +69,28 @@ export const setTotalPages = (totalPages) => {
 export const searchByName = (name) => {
   return async function (dispatch) {
     try {
-      const response = await fetch(`http://localhost:3001/pokemon?name=${name}`);
+      const response = await fetch(
+        `http://localhost:3001/pokemon?name=${name}`
+      );
       const data = await response.json();
       dispatch({
-        type: GET_ALL_POKEMONS,
+        type: SEARCH_BY_NAME,
         payload: [data],
       });
     } catch (error) {
       console.log({ error: error.message });
     }
+  };
+};
+
+export const getApiPokemons = () => {
+  return {
+    type: GET_API_POKEMONS,
+  };
+};
+
+export const getDbPokemons = () => {
+  return {
+    type: GET_DB_POKEMONS,
   };
 };

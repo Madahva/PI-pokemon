@@ -6,6 +6,8 @@ import {
   GO_TO_PAGE,
   SET_TOTAL_PAGES,
   SEARCH_BY_NAME,
+  GET_API_POKEMONS,
+  GET_DB_POKEMONS,
 } from "./actions.js";
 
 const initialState = {
@@ -16,7 +18,7 @@ const initialState = {
   itemsPerPage: 12,
   totalPages: [],
 
-
+  pokemonsBackUp: [],
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -25,6 +27,7 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         pokemons: action.payload,
+        pokemonsBackUp: action.payload,
       };
 
     case GET_ALL_TYPES:
@@ -32,8 +35,6 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         types: action.payload,
       };
-
-
 
     case PREV_PAGE:
       let decrement = -1;
@@ -46,7 +47,7 @@ export default function rootReducer(state = initialState, action) {
 
     case NEXT_PAGE:
       let increment = 1;
-      if (state.currentPage === state.totalPages) increment = 0; 
+      if (state.currentPage === state.totalPages) increment = 0;
 
       return {
         ...state,
@@ -68,8 +69,26 @@ export default function rootReducer(state = initialState, action) {
     case SEARCH_BY_NAME:
       return {
         ...state,
-        pokemons: action.payload
-      }
+        pokemons: action.payload,
+      };
+
+    case GET_API_POKEMONS:
+      state.pokemons = state.pokemonsBackUp;
+      return {
+        ...state,
+        pokemons: state.pokemons.filter(
+          (pokemon) => typeof pokemon.id === "number"
+        ),
+      };
+
+    case GET_DB_POKEMONS:
+      state.pokemons = state.pokemonsBackUp;
+      return {
+        ...state,
+        pokemons: state.pokemons.filter(
+          (pokemon) => typeof pokemon.id === "string"
+        ),
+      };
 
     default:
       return { ...state };

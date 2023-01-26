@@ -18,7 +18,7 @@ const Home = () => {
 
   return (
     <div>
-      <FilterBar />
+      <FilterBar pokemons={pokemons} />
       <Cards pokemons={pokemons} />
       <Pagination pokemons={pokemons} />
     </div>
