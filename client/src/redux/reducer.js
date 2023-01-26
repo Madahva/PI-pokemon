@@ -5,6 +5,7 @@ import {
   NEXT_PAGE,
   GO_TO_PAGE,
   SET_TOTAL_PAGES,
+  SEARCH_BY_NAME,
 } from "./actions.js";
 
 const initialState = {
@@ -14,6 +15,8 @@ const initialState = {
   currentPage: 1,
   itemsPerPage: 12,
   totalPages: [],
+
+
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -62,7 +65,11 @@ export default function rootReducer(state = initialState, action) {
         totalPages: action.payload,
       };
 
-
+    case SEARCH_BY_NAME:
+      return {
+        ...state,
+        pokemons: action.payload
+      }
 
     default:
       return { ...state };
