@@ -2,28 +2,24 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPokemons, getAllTypes } from "../redux/actions.js";
 
-import Cards from "./Cards.jsx"
+import Cards from "./Cards.jsx";
+import Pagination from "./Pagination.jsx";
 
 const Home = () => {
-  const pokemonsGlobal = useSelector((state) => state.pokemons);
-  const [pokemons, setPokemons] = useState([]);
+  const pokemons = useSelector((state) => state.pokemons);
 
   const dispatch = useDispatch();
 
-  //Cargamos el estado global con la info de la API
+  //Cargamos el Estado de Redux
   useEffect(() => {
     dispatch(getAllPokemons());
     dispatch(getAllTypes());
   }, [dispatch]);
 
-  //Cargamos el estado de Home con el contenido del estado global
-  useEffect(() => {
-    setPokemons([...pokemonsGlobal]);
-  }, [pokemonsGlobal]);
-
   return (
     <div>
-      <Cards pokemons = {pokemons} />
+      <Cards pokemons={pokemons} />
+      <Pagination pokemons={pokemons} />
     </div>
   );
 };
