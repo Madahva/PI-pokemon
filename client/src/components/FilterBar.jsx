@@ -6,6 +6,8 @@ import {
   getDbPokemons,
   getAllPokemons,
   goToPage,
+  sortName,
+  sortAtk,
 } from "../redux/actions.js";
 
 const FilterBar = () => {
@@ -56,6 +58,13 @@ const FilterBar = () => {
         >
           DB
         </button>
+      </div>
+
+      <div className="sort">
+        <button onClick={() => dispatch(sortName("MAYOR"))}>A-z</button>
+        <button onClick={() => dispatch(sortName("MENOR"))}>Z-A</button>
+        <button onClick={() => dispatch(sortAtk("MAYOR"))}>Mayor ATK</button>
+        <button onClick={() => dispatch(sortAtk("MENOR"))}>Menor ATK</button>
       </div>
     </div>
   );

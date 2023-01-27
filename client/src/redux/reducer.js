@@ -8,6 +8,8 @@ import {
   SEARCH_BY_NAME,
   GET_API_POKEMONS,
   GET_DB_POKEMONS,
+  SORT_NAME,
+  SORT_ATK,
 } from "./actions.js";
 
 const initialState = {
@@ -90,7 +92,24 @@ export default function rootReducer(state = initialState, action) {
         ),
       };
 
-    default:
+    case SORT_NAME:
+      const ascendingName = (a, b) => a.name.localeCompare(b.name);
+      const descendingName = (a, b) => b.name.localeCompare(a.name);
+
+      const orderName = action.payload === "MAYOR" ? ascendingName : descendingName;
+      state.pokemons.sort(orderName);
+
       return { ...state };
+
+    case SORT_ATK:
+      const ascendingAtk = (a, b) => a.attack - b.attack;
+      const descendingAtk = (a, b) => b.attack - a.attack;
+
+      const orderAtk = action.payload === "MAYOR" ? descendingAtk : ascendingAtk;
+      state.pokemons.sort(orderAtk);
+
+      return { ...state };
+
+    default: return { ...state };
   }
 }
