@@ -10,15 +10,11 @@ import {
 const Pagination = ({ pokemons }) => {
   const dispatch = useDispatch();
   const pagination = useSelector((state) => state);
-  const itemsToShow = pokemons.slice(
-    (pagination.currentPage - 1) * pagination.itemsPerPage,
-    pagination.currentPage * pagination.itemsPerPage
-  );
 
   useEffect(() => {
     const totalPages = Math.ceil(pokemons.length / pagination.itemsPerPage);
     dispatch(setTotalPages(totalPages));
-  }, [pokemons.length, pagination.itemsPerPage]);
+  }, [pokemons.length, pagination.itemsPerPage, dispatch]);
 
   const totalPages = [...Array(pagination.totalPages)].map((_, i) => i + 1);
 

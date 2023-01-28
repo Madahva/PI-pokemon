@@ -1,5 +1,6 @@
 export const GET_ALL_POKEMONS = "GET_ALL_POKEMONS";
 export const GET_ALL_TYPES = "GET_ALL_TYPES";
+export const GET_POKEMON_BY_ID = "GET_POKEMON_BY_ID";
 
 export const PREV_PAGE = "PREV_PAGE";
 export const NEXT_PAGE = "NEXT_PAGE";
@@ -35,6 +36,21 @@ export const getAllTypes = () => {
       const data = await response.json();
       dispatch({
         type: GET_ALL_TYPES,
+        payload: data,
+      });
+    } catch (error) {
+      console.log({ error: error.message });
+    }
+  };
+};
+
+export const getPokemonByID = (id) => {
+  return async function (dispatch) {
+    try {
+      const response = await fetch(`http://localhost:3001/pokemon/${id}`);
+      const data = await response.json();
+      dispatch({
+        type: GET_POKEMON_BY_ID,
         payload: data,
       });
     } catch (error) {

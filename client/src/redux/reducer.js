@@ -1,6 +1,7 @@
 import {
   GET_ALL_POKEMONS,
   GET_ALL_TYPES,
+  GET_POKEMON_BY_ID,
   PREV_PAGE,
   NEXT_PAGE,
   GO_TO_PAGE,
@@ -15,7 +16,7 @@ import {
 const initialState = {
   pokemons: [],
   types: [],
-
+  pokemonDetail: [],
   currentPage: 1,
   itemsPerPage: 12,
   totalPages: [],
@@ -36,6 +37,12 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         types: action.payload,
+      };
+
+    case GET_POKEMON_BY_ID:
+      return {
+        ...state,
+        pokemonDetail: action.payload,
       };
 
     case PREV_PAGE:
@@ -96,7 +103,8 @@ export default function rootReducer(state = initialState, action) {
       const ascendingName = (a, b) => a.name.localeCompare(b.name);
       const descendingName = (a, b) => b.name.localeCompare(a.name);
 
-      const orderName = action.payload === "MAYOR" ? ascendingName : descendingName;
+      const orderName =
+        action.payload === "MAYOR" ? ascendingName : descendingName;
       state.pokemons.sort(orderName);
 
       return { ...state };
@@ -105,11 +113,13 @@ export default function rootReducer(state = initialState, action) {
       const ascendingAtk = (a, b) => a.attack - b.attack;
       const descendingAtk = (a, b) => b.attack - a.attack;
 
-      const orderAtk = action.payload === "MAYOR" ? descendingAtk : ascendingAtk;
+      const orderAtk =
+        action.payload === "MAYOR" ? descendingAtk : ascendingAtk;
       state.pokemons.sort(orderAtk);
 
       return { ...state };
 
-    default: return { ...state };
+    default:
+      return { ...state };
   }
 }
