@@ -89,7 +89,7 @@ export const searchByName = (name) => {
   return async function (dispatch) {
     try {
       const response = await fetch(
-        `http://localhost:3001/pokemon?name=${name}`
+        `http://localhost:3001/pokemon?name=${name.trim()}`
       );
       const data = await response.json();
       dispatch({
