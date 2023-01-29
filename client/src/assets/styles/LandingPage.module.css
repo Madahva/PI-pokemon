@@ -1,0 +1,89 @@
+.landingPage {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+  height: 100vh;
+  width: 100vw;
+  background-image: url("../images/fondo.png");
+  background-repeat: no-repeat;
+  background-size: 50%;
+  background-position: center bottom 5rem;
+}
+
+.landingPage h1 {
+  color: #a370f0;
+  margin-top: 5rem;
+  color: #fff;
+  text-shadow:
+          /* White glow */ 0 0 7px #d3d3d3, 0 0 10px #d3d3d3,
+    0 0 21px #d3d3d3, /* Green glow */ 0 0 42px #9400d3, 0 0 82px #9400d3,
+    0 0 92px #9400d3, 0 0 102px #9400d3, 0 0 151px #9400d3;
+}
+
+.landingPage-button {
+  background: var(--purple);
+  color: white;
+  font-family: inherit;
+  padding: 0.35em;
+  padding-left: 1.2em;
+  font-size: 17px;
+  font-weight: 500;
+  border-radius: 0.9em;
+  border: none;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  box-shadow: inset 0 0 1.6em -0.6em #714da6;
+  overflow: hidden;
+  position: relative;
+  height: 2.8em;
+  padding-right: 3.3em;
+}
+
+.landingPage-button .landingPage-button__icon {
+  background: var(--yellow);
+  margin-left: 1em;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.2em;
+  width: 2.2em;
+  border-radius: 0.7em;
+  box-shadow: 0.1em 0.1em 0.6em 0.2em #7b52b9;
+  right: 0.3em;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.landingPage-button:hover .landingPage-button__icon {
+  width: calc(100% - 0.6em);
+}
+
+.landingPage-button .landingPage-button__icon svg {
+  width: 1.1em;
+  transition: transform 0.3s;
+  color: #7b52b9;
+  cursor: pointer;
+}
+
+.landingPage-button:hover .landingPage-button__icon svg {
+  transform: translateX(0.1em);
+}
+
+.landingPage-button:active .landingPage-button__icon {
+  transform: scale(0.95);
+}
+
+@media (min-width: 500px) {
+  .landingPage {
+    background-position: center bottom 5rem;
+  }
+}
+
+@media (min-width: 650px) {
+  .landingPage {
+    background-size: 20%;
+  }
+}
