@@ -1,0 +1,22 @@
+.nav {
+  align-items: center;
+  background-color: var(--purple);
+  display: flex;
+  justify-content: space-around;
+  height: min-content;
+  position: fixed;
+  width: 100vw;
+  z-index: 1000;
+  box-shadow: 0 0 30px 5px rgba(163, 112, 240, 0.815);
+}
+
+.nav button {
+  background-color: var(--yellow);
+  border-radius: 0;
+  border: none;
+  color: var(--dark-purple);
+}
+
+.nav button:hover {
+  background-color: #eeeeee;
+}
