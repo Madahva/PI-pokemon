@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import css from "../assets/styles/Filter.module.css";
 import {
   searchByName,
   getApiPokemons,
@@ -20,23 +21,22 @@ const FilterBar = () => {
   };
 
   return (
-    <div>
-      <div className="search">
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            placeholder="Search by Name"
-            value={searchValue}
-            onChange={(e) => setSearchValue(e.target.value)}
-          />
-          <button>Search</button>
-        </form>
-      </div>
+    <div className={css.filterBar}>
+      <form className={css["search"]} onSubmit={handleSubmit}>
+        <input
+          className={css["search__input"]}
+          type="text"
+          placeholder="Search by Name"
+          value={searchValue}
+          onChange={(e) => setSearchValue(e.target.value)}
+        />
+        <button className={css["search__button"]}>Search</button>
+      </form>
 
-      <div className="filter">
+      <div className={css.filter}>
         <button
           onClick={() => {
-            dispatch(goToPage(1))
+            dispatch(goToPage(1));
             dispatch(getAllPokemons());
           }}
         >
@@ -44,7 +44,7 @@ const FilterBar = () => {
         </button>
         <button
           onClick={() => {
-            dispatch(goToPage(1))
+            dispatch(goToPage(1));
             dispatch(getApiPokemons());
           }}
         >
@@ -52,19 +52,18 @@ const FilterBar = () => {
         </button>
         <button
           onClick={() => {
-            dispatch(goToPage(1))
+            dispatch(goToPage(1));
             dispatch(getDbPokemons());
           }}
         >
           DB
         </button>
       </div>
-
-      <div className="sort">
+      <div className={css.sort}>
         <button onClick={() => dispatch(sortName("MAYOR"))}>A-z</button>
         <button onClick={() => dispatch(sortName("MENOR"))}>Z-A</button>
-        <button onClick={() => dispatch(sortAtk("MAYOR"))}>Mayor ATK</button>
-        <button onClick={() => dispatch(sortAtk("MENOR"))}>Menor ATK</button>
+        <button onClick={() => dispatch(sortAtk("MAYOR"))}> &gt; ATK</button>
+        <button onClick={() => dispatch(sortAtk("MENOR"))}> &lt; ATK</button>
       </div>
     </div>
   );

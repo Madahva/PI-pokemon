@@ -1,13 +1,14 @@
 .nav {
   align-items: center;
   background-color: var(--purple);
+  box-shadow: 0 0 30px 5px rgba(163, 112, 240, 0.815);
   display: flex;
-  justify-content: space-around;
   height: min-content;
+  justify-content: space-between;
+  padding: 0;
   position: fixed;
   width: 100vw;
   z-index: 1000;
-  box-shadow: 0 0 30px 5px rgba(163, 112, 240, 0.815);
 }
 
 .nav button {
@@ -19,4 +20,14 @@
 
 .nav button:hover {
   background-color: #eeeeee;
+}
+
+@media (min-width: 950px) {
+  .nav a:first-child {
+    margin: 0 0 0 10rem;
+  }
+
+  .nav a:last-child {
+    margin: 0 10rem 0 0;
+  }
 }
