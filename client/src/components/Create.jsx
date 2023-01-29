@@ -116,7 +116,7 @@ const Create = () => {
     const isValid = validate();
     if (isValid) {
       try {
-        const create = await fetch("http://localhost:3001/pokemon", {
+        await fetch("http://localhost:3001/pokemon", {
           method: "POST",
           headers: {
             Accept: "application/json",
