@@ -1,7 +1,8 @@
 import { useSelector } from "react-redux";
+import css from "../assets/styles/CardsContainer.module.css"
 import Card from "./Card.jsx";
 
-const Cards = ({ pokemons }) => {
+const CardsContainer = ({ pokemons }) => {
   const pagination = useSelector((state) => state);
   const itemsToShow = pokemons.slice(
     (pagination.currentPage - 1) * pagination.itemsPerPage,
@@ -9,7 +10,7 @@ const Cards = ({ pokemons }) => {
   );
 
   return (
-    <div>
+    <div className={css["cards-container"]}>
       {itemsToShow.map((pokemon) => (
         <div key={pokemon.id}>
           <Card
@@ -24,4 +25,4 @@ const Cards = ({ pokemons }) => {
   );
 };
 
-export default Cards;
+export default CardsContainer;
