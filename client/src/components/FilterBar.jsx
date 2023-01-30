@@ -17,7 +17,10 @@ const FilterBar = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(searchByName(searchValue));
+    if (searchValue !== "") {
+      dispatch(searchByName(searchValue));
+    }
+    setSearchValue("");
   };
 
   return (
@@ -25,6 +28,7 @@ const FilterBar = () => {
       <form className={css["search"]} onSubmit={handleSubmit}>
         <input
           className={css["search__input"]}
+          autoFocus
           type="text"
           placeholder="Search by Name"
           value={searchValue}

@@ -3,7 +3,6 @@
   background-color: var(--purple);
   box-shadow: 0 0 30px 5px rgba(163, 112, 240, 0.815);
   display: flex;
-  height: min-content;
   justify-content: space-between;
   padding: 0;
   position: fixed;
@@ -12,6 +11,8 @@
 }
 
 .nav button {
+  height: 2rem;
+  padding: 0 1rem;
   background-color: var(--yellow);
   border-radius: 0;
   border: none;
