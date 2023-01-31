@@ -11,5 +11,6 @@ a {
 
 body {
   background-color: #eeeeee;
+  overflow-x: hidden;
 }
 

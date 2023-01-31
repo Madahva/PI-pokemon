@@ -1,0 +1,21 @@
+.pagination {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.pagination button {
+  width: 100vw;
+  border: 1px solid transparent;
+  cursor: pointer;
+  border-radius: 0;
+}
+
+.pagination button:hover {
+  color: var(--dark-purple)
+}
+
+.selectedPage {
+  background-color: var(--dark-purple);
+}

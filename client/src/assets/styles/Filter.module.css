@@ -7,9 +7,14 @@
   flex-direction: column;
 }
 
+.selectedFilter, .selectedSort {
+  background-color: var(--dark-purple);
+}
+
 .search {
   display: flex;
   align-items: center;
+  margin-top: 2rem;
 }
 
 .search__input {
@@ -30,9 +35,10 @@
   letter-spacing: 2px;
   min-height: 42px;
   padding: 0.5em 1em;
-  border: 1px solid transparent;
+  border: 1px solid var(--dark-purple);
+  border-left: none;
   border-radius: 0 6px 6px 0;
-  background-color: var(--dark-purple);
+  background-color: var(--purple);
   color: #fff;
   font-size: 15px;
   cursor: pointer;
@@ -87,5 +93,4 @@
     min-width: 150px;
   }
 }
-
 

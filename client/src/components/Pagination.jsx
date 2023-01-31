@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import css from "../assets/styles/Pagination.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import {
   nextPage,
@@ -10,6 +11,12 @@ import {
 const Pagination = ({ pokemons }) => {
   const dispatch = useDispatch();
   const pagination = useSelector((state) => state);
+  const [selectedPage, setSelectedPage] = useState(1);
+
+  const handlePageClick = (pageNumber) => {
+    dispatch(goToPage(pageNumber));
+    setSelectedPage(pageNumber)
+  };
 
   useEffect(() => {
     const totalPages = Math.ceil(pokemons.length / pagination.itemsPerPage);
@@ -18,11 +25,13 @@ const Pagination = ({ pokemons }) => {
 
   const totalPages = [...Array(pagination.totalPages)].map((_, i) => i + 1);
 
+  console.log(selectedPage)
+
   return (
-    <div>
+    <div className={css.pagination}>
       <button onClick={() => dispatch(prevPage())}>Prev page</button>
       {totalPages.map((pageNumber) => (
-        <button key={pageNumber} onClick={() => dispatch(goToPage(pageNumber))}>
+        <button key={pageNumber} className={selectedPage === pageNumber ? css.selectedPage : ""} onClick={() => handlePageClick(pageNumber)}>
           {pageNumber}
         </button>
       ))}
