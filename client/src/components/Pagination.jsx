@@ -25,8 +25,6 @@ const Pagination = ({ pokemons }) => {
 
   const totalPages = [...Array(pagination.totalPages)].map((_, i) => i + 1);
 
-  console.log(selectedPage)
-
   return (
     <div className={css.pagination}>
       <button onClick={() => dispatch(prevPage())}>Prev page</button>

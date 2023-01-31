@@ -13,9 +13,13 @@
 }
 
 .pagination button:hover {
-  color: var(--dark-purple)
+  border-color: var(--dark-purple);
 }
 
 .selectedPage {
+  background-color: var(--dark-purple);
+}
+
+.selectedPage:hover {
   background-color: var(--dark-purple);
 }

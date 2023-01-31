@@ -1,7 +1,9 @@
+import css from "../assets/styles/Details.module.css";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getPokemonByID } from "../redux/actions.js";
+import StatisticGraph from "./StatisticGraph";
 
 const Details = () => {
   const { id } = useParams();
@@ -18,34 +20,28 @@ const Details = () => {
 
   let typeID = 0;
 
-
   return (
-    <div>
-      <h1>{pokemon.name}</h1>
+    <div className={css.detailsContainer}>
+      <div className={css.details}>
+        <h1>{pokemon.name}</h1>
 
-      {pokemon.type &&
-        pokemon.type.map((type) => {
-          return (
-            <div key={typeID++}>
-              <p>{type.name}</p>
-            </div>
-          );
-        })}
+        <div className={css.types}>
+          {pokemon.type &&
+            pokemon.type.map((type) => {
+              return (
+                <div key={typeID++}>
+                  <p>{type.name}</p>
+                </div>
+              );
+            })}
+        </div>
 
-      <img src={pokemon.image} alt="Pokemon"/>
-     
-      <p>{pokemon.id}</p>
+        <img src={pokemon.image} alt="Pokemon" />
 
-      <div>
-        <p>{pokemon.hp}</p>
-        <p>{pokemon.attack}</p>
-        <p>{pokemon.defense}</p>
-        <p>{pokemon.speed}</p>
+        <p className={css.id}>ID: {pokemon.id}</p>
       </div>
-
-      <div>
-        <p>{pokemon.height}</p>
-        <p>{pokemon.weight}</p>
+      <div className={css.stats}>
+        <StatisticGraph pokemon={pokemon} />
       </div>
     </div>
   );
