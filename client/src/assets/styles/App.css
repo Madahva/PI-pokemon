@@ -11,6 +11,8 @@ a {
 
 body {
   background-color: #eeeeee;
+  background: rgb(249,238,221);
+  background: linear-gradient(180deg, rgba(249,238,221,1) 0%, rgba(163,112,240,0.4920167896260067) 100%);
   overflow-x: hidden;
 }
 
