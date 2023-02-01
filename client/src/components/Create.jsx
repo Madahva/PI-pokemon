@@ -1,3 +1,5 @@
+import css from "../assets/styles/Create.module.css";
+import cutePokemons from "../assets/images/form.png";
 import { useState } from "react";
 
 const Create = () => {
@@ -33,13 +35,14 @@ const Create = () => {
         }
       }
     }
+    validate(event)
     setPokemon({
       ...pokemon,
       [name]: name === "types" ? selectedTypes : value,
     });
   };
 
-  const validate = () => {
+  const validate = (event) => {
     let nameError = "";
     let typeError = "";
     let healthError = "";
@@ -51,8 +54,6 @@ const Create = () => {
 
     if (!pokemon.name) {
       nameError = "Name is required";
-    } else if (pokemon.name.match(/\d+/g)) {
-      nameError = "Name cannot contain numbers";
     }
 
     if (!pokemon.types.length) {
@@ -62,6 +63,7 @@ const Create = () => {
     if (!pokemon.health) {
       healthError = "HP is required";
     }
+  
 
     if (!pokemon.attack) {
       attackError = "Attack is required";
@@ -77,8 +79,8 @@ const Create = () => {
 
     if (!pokemon.height) {
       heightError = "Height is required";
-    } else if (pokemon.height > 10) {
-      heightError = "Height cannot be greater than 10";
+    } else if (pokemon.height > 100) {
+      heightError = "Height cannot be greater than 100";
     }
 
     if (!pokemon.weight) {
@@ -154,117 +156,118 @@ const Create = () => {
   };
 
   return (
-    <div>
-      <form action="POST" onSubmit={handleSubmit}>
-        <label>
-          Name:
-          <input
-            type="text"
-            name="name"
-            value={pokemon.name}
-            onChange={handleChange}
-          />
-          {error.nameError && <span>{error.nameError}</span>}
-        </label>
+    <>
+      <h1 className={css["create-tittle"]}>Create a new Pokemon</h1>
+      <div className={css["form-container"]}>
+        <form className={css.form} action="POST" onSubmit={handleSubmit}>
+          <label className={css.label}>
+            Name:
+            <input
+              type="text"
+              name="name"
+              value={pokemon.name}
+              onChange={handleChange}
+            />
+            {error.nameError && <span>{error.nameError}</span>}
+          </label>
+          <label>
+            Types:
+            <select
+              multiple={true}
+              name="types"
+              value={pokemon.types}
+              onChange={handleChange}
+            >
+              <option value="normal">Normal</option>
+              <option value="fire">Fire</option>
+              <option value="water">Water</option>
+              <option value="electric">Electric</option>
+              <option value="grass">Grass</option>
+              <option value="ice">Ice</option>
+              <option value="fighting">Fighting</option>
+              <option value="poison">Poison</option>
+              <option value="ground">Ground</option>
+              <option value="flying">Flying</option>
+              <option value="psychic">Psychic</option>
+              <option value="bug">Bug</option>
+              <option value="rock">Rock</option>
+              <option value="ghost">Ghost</option>
+              <option value="dragon">Dragon</option>
+              <option value="dark">Dark</option>
+              <option value="steel">Steel</option>
+              <option value="fairy">Fairy</option>
+            </select>
+            {error.typeError && <span>{error.typeError}</span>}
+          </label>
+          <label>
+            HP:
+            <input
+              type="number"
+              name="health"
+              value={pokemon.health}
+              onChange={handleChange}
+            />
+            {error.healthError && <span>{error.healthError}</span>}
+          </label>
+          <label>
+            Attack:
+            <input
+              type="number"
+              name="attack"
+              value={pokemon.attack}
+              onChange={handleChange}
+            />
+            {error.attackError && <span>{error.attackError}</span>}
+          </label>
 
-        <label>
-          Types:
-          <select
-            multiple={true}
-            name="types"
-            value={pokemon.types}
-            onChange={handleChange}
-          >
-            <option value="normal">Normal</option>
-            <option value="fire">Fire</option>
-            <option value="water">Water</option>
-            <option value="electric">Electric</option>
-            <option value="grass">Grass</option>
-            <option value="ice">Ice</option>
-            <option value="fighting">Fighting</option>
-            <option value="poison">Poison</option>
-            <option value="ground">Ground</option>
-            <option value="flying">Flying</option>
-            <option value="psychic">Psychic</option>
-            <option value="bug">Bug</option>
-            <option value="rock">Rock</option>
-            <option value="ghost">Ghost</option>
-            <option value="dragon">Dragon</option>
-            <option value="dark">Dark</option>
-            <option value="steel">Steel</option>
-            <option value="fairy">Fairy</option>
-          </select>
-          {error.typeError && <span>{error.typeError}</span>}
-        </label>
-        <label>
-          HP:
-          <input
-            type="number"
-            name="health"
-            value={pokemon.health}
-            onChange={handleChange}
-          />
-          {error.healthError && <span>{error.healthError}</span>}
-        </label>
-        <br />
-        <label>
-          Attack:
-          <input
-            type="number"
-            name="attack"
-            value={pokemon.attack}
-            onChange={handleChange}
-          />
-          {error.attackError && <span>{error.attackError}</span>}
-        </label>
+          <label>
+            Defense:
+            <input
+              type="number"
+              name="defense"
+              value={pokemon.defense}
+              onChange={handleChange}
+            />
+            {error.defenseError && <span>{error.defenseError}</span>}
+          </label>
 
-        <label>
-          Defense:
-          <input
-            type="number"
-            name="defense"
-            value={pokemon.defense}
-            onChange={handleChange}
-          />
-          {error.defenseError && <span>{error.defenseError}</span>}
-        </label>
+          <label>
+            Speed:
+            <input
+              type="number"
+              name="speed"
+              value={pokemon.speed}
+              onChange={handleChange}
+            />
+            {error.speedError && <span>{error.speedError}</span>}
+          </label>
 
-        <label>
-          Speed:
-          <input
-            type="number"
-            name="speed"
-            value={pokemon.speed}
-            onChange={handleChange}
-          />
-          {error.speedError && <span>{error.speedError}</span>}
-        </label>
+          <label>
+            Height:
+            <input
+              type="number"
+              name="height"
+              value={pokemon.height}
+              onChange={handleChange}
+            />
+            {error.heightError && <span>{error.heightError}</span>}
+          </label>
 
-        <label>
-          Height:
-          <input
-            type="number"
-            name="height"
-            value={pokemon.height}
-            onChange={handleChange}
-          />
-          {error.heightError && <span>{error.heightError}</span>}
-        </label>
-
-        <label>
-          Weight:
-          <input
-            type="number"
-            name="weight"
-            value={pokemon.weight}
-            onChange={handleChange}
-          />
-          {error.weightError && <span>{error.weightError}</span>}
-        </label>
-        <br />
-        <button type="submit">Create Pokemon</button>
-      </form>
-    </div>
+          <label>
+            Weight:
+            <input
+              type="number"
+              name="weight"
+              value={pokemon.weight}
+              onChange={handleChange}
+            />
+            {error.weightError && <span>{error.weightError}</span>}
+          </label>
+          <button type="submit">Create Pokemon</button>
+        </form>
+        <img className={css.cutePokemons} src={cutePokemons} alt="pokemons" />
+      </div>
+    </>
   );
 };
 

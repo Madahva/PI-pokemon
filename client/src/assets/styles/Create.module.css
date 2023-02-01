@@ -1,0 +1,144 @@
+.form-container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+}
+
+.create-tittle {
+  padding: 8rem 0 6rem 0;
+  margin: 0;
+  text-align: center;
+  color: #fff;
+  text-shadow:
+                    /* White glow */ 0 0 7px #d3d3d3,
+    0 0 10px #d3d3d3, 0 0 21px #d3d3d3, /* Green glow */ 0 0 42px #9400d3,
+    0 0 82px #9400d3, 0 0 92px #9400d3, 0 0 102px #9400d3, 0 0 151px #9400d3;
+  animation: pulse 3s ease-in-out infinite alternate;
+}
+
+@keyframes pulse {
+  0% {
+    text-shadow: 0 0 7px #d3d3d3, 0 0 10px #d3d3d3, 0 0 21px #d3d3d3,
+      0 0 42px #9400d3, 0 0 82px #9400d3, 0 0 92px #9400d3, 0 0 102px #9400d3,
+      0 0 151px #9400d3;
+  }
+ 
+  100% {
+    text-shadow: 0 0 4px #d3d3d3, 0 0 5px #d3d3d3, 0 0 14px #d3d3d3,
+      0 0 24px #9400d3, 0 0 41px #9400d3, 0 0 41px #9400d3, 0 0 51px #9400d3,
+      0 0 60px #9400d3;
+      transform: scale(1.1);
+  }
+}
+
+.form {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding: 0 4rem;
+}
+
+.form label {
+  align-items: flex-start;
+  color: var(--dark-purple);
+  display: flex;
+  flex-direction: column;
+  font-weight: 700;
+  margin: 10px 0;
+}
+
+.form input {
+  min-height: 40px;
+  max-width: 150px;
+  cursor: text;
+  padding: 0 1rem;
+  margin: 0.8rem 0;
+  color: var(--dark-purple);
+  font-size: 15px;
+  border: 1px solid var(--dark-purple);
+  box-shadow: -1px 0px 22px 5px rgba(163, 112, 240, 0.65);
+  -webkit-box-shadow: -1px 0px 22px 5px rgba(163, 112, 240, 0.65);
+  -moz-box-shadow: -1px 0px 22px 5px rgba(163, 112, 240, 0.65);
+  background-color: var(--yellow);
+}
+
+.form button {
+  background-color: var(--purple);
+  border-radius: 6px;
+  border: 1px solid var(--dark-purple);
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  min-height: 42px;
+  padding: 0.5em 1em;
+  cursor: pointer;
+  margin: 0 auto;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.form button:hover {
+  background-color: var(--purple);
+  box-shadow: none;
+}
+
+.form input:focus,
+.form input:focus-visible {
+  box-shadow: -1px 0px 22px 5px rgba(163, 112, 240, 1);
+  -webkit-box-shadow: -1px 0px 22px 5px rgba(163, 112, 240, 1);
+  -moz-box-shadow: -1px 0px 22px 5px rgba(163, 112, 240, 1);
+}
+
+.form input:hover {
+  border-color: var(--purple);
+  outline: none;
+}
+
+label:hover {
+  color: var(--purple);
+  transition: all ease 0.2s;
+  transform: scale(1.03);
+}
+
+select {
+  width: 182px;
+  height: 42px;
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #7c4dff;
+  border-radius: 5px;
+  background-color: #fff;
+  appearance: none;
+  margin-bottom: 10px;
+}
+
+select:focus {
+  outline: none;
+  border-color: #7c4dff;
+  box-shadow: 0 0 10px #7c4dff;
+}
+
+.cutePokemons {
+  display: none;
+}
+
+@media (min-width: 750px) {
+  .form {
+    flex-direction: row;
+    padding: 0 0 0 8rem;
+    max-width: 32rem;
+    justify-content: space-between;
+  }
+
+  .cutePokemons {
+    width: 22rem;
+    display: block;
+  }
+}
