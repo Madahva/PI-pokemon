@@ -15,7 +15,7 @@ const Pagination = ({ pokemons }) => {
 
   const handlePageClick = (pageNumber) => {
     dispatch(goToPage(pageNumber));
-    setSelectedPage(pageNumber)
+    setSelectedPage(pageNumber);
   };
 
   useEffect(() => {
@@ -26,15 +26,23 @@ const Pagination = ({ pokemons }) => {
   const totalPages = [...Array(pagination.totalPages)].map((_, i) => i + 1);
 
   return (
-    <div className={css.pagination}>
-      <button onClick={() => dispatch(prevPage())}>Prev page</button>
-      {totalPages.map((pageNumber) => (
-        <button key={pageNumber} className={selectedPage === pageNumber ? css.selectedPage : ""} onClick={() => handlePageClick(pageNumber)}>
-          {pageNumber}
-        </button>
-      ))}
-      <button onClick={() => dispatch(nextPage())}>Next page</button>
-    </div>
+    <>
+      {pokemons.length ? (
+        <div className={css.pagination}>
+          <button onClick={() => dispatch(prevPage())}>Prev page</button>
+          {totalPages.map((pageNumber) => (
+            <button
+              key={pageNumber}
+              className={selectedPage === pageNumber ? css.selectedPage : ""}
+              onClick={() => handlePageClick(pageNumber)}
+            >
+              {pageNumber}
+            </button>
+          ))}
+          <button onClick={() => dispatch(nextPage())}>Next page</button>
+        </div>
+      ) : null}
+    </>
   );
 };
 
