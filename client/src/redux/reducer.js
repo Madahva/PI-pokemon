@@ -11,6 +11,7 @@ import {
   GET_DB_POKEMONS,
   SORT_NAME,
   SORT_ATK,
+  EMTYDETAILS,
 } from "./actions.js";
 
 const initialState = {
@@ -118,6 +119,12 @@ export default function rootReducer(state = initialState, action) {
       state.pokemons.sort(orderAtk);
 
       return { ...state };
+
+    case EMTYDETAILS:
+      return {
+        ...state,
+        pokemonDetail: [],
+      };
 
     default:
       return { ...state };

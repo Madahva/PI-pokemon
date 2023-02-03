@@ -14,6 +14,8 @@ export const GET_DB_POKEMONS = "GET_DB_POKEMONS";
 export const SORT_NAME = "SORT_NAME";
 export const SORT_ATK = "SORT_ATK";
 
+export const EMTYDETAILS = "EMTYDETAILS";
+
 export const getAllPokemons = () => {
   return async function (dispatch) {
     try {
@@ -125,5 +127,11 @@ export const sortAtk = (ORDER) => {
   return {
     type: SORT_ATK,
     payload: ORDER,
+  };
+};
+
+export const emtyDetails = () => {
+  return {
+    type: EMTYDETAILS,
   };
 };

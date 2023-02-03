@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllPokemons, getAllTypes } from "../redux/actions.js";
+import { getAllPokemons, getAllTypes, emtyDetails } from "../redux/actions.js";
 import css from "../assets/styles/Home.module.css";
 import Loading from "./Loading.jsx";
 import FilterBar from "./FilterBar.jsx";
@@ -16,6 +16,7 @@ const Home = () => {
   useEffect(() => {
     dispatch(getAllPokemons());
     dispatch(getAllTypes());
+    dispatch(emtyDetails());
   }, [dispatch]);
 
   return (
