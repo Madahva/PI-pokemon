@@ -131,7 +131,7 @@ export default function rootReducer(state = initialState, action) {
     case SET_ERROR:
       return {
         ...state,
-        error: action.payload + " is not a Pokemon.",
+        error: action.payload + " is not a Pokemon. 🤭",
       };
 
     default:
