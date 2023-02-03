@@ -5,7 +5,7 @@ import { useState } from "react";
 const Create = () => {
   const [pokemon, setPokemon] = useState({
     name: "",
-    health: "",
+    hp: "",
     attack: "",
     defense: "",
     speed: "",
@@ -60,7 +60,7 @@ const Create = () => {
       typeError = "Type is required";
     }
 
-    if (!pokemon.health) {
+    if (!pokemon.hp) {
       healthError = "HP is required";
     }
   
@@ -133,7 +133,7 @@ const Create = () => {
       setPokemon({
         name: "",
         image: "",
-        health: "",
+        hp: "",
         attack: "",
         defense: "",
         speed: "",
@@ -203,8 +203,8 @@ const Create = () => {
             HP:
             <input
               type="number"
-              name="health"
-              value={pokemon.health}
+              name="hp"
+              value={pokemon.hp}
               onChange={handleChange}
             />
             {error.healthError && <span>{error.healthError}</span>}

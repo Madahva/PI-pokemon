@@ -46,12 +46,12 @@ pokemonRouter.get("/:id", async (req, res) => {
 
 pokemonRouter.post("/", async (req, res) => {
   try {
-    const { name, health, attack, defense, speed, height, weight, types } =
+    const { name, hp, attack, defense, speed, height, weight, types } =
       req.body;
 
     if (
       !name ||
-      !health ||
+      !hp||
       !attack ||
       !defense ||
       !speed ||
@@ -64,7 +64,7 @@ pokemonRouter.post("/", async (req, res) => {
 
     const newBicho = await createBicho(
       name,
-      health,
+      hp,
       attack,
       defense,
       speed,

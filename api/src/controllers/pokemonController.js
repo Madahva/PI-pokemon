@@ -7,7 +7,7 @@ const getAllBichos = async () => {
   //Obtenemos los bichos de la API
   let bichosApi = [];
 
-  await fetch("https://pokeapi.co/api/v2/pokemon?limit=100", {
+  await fetch("https://pokeapi.co/api/v2/pokemon?limit=110", {
     method: "GET",
     headers: headers,
   })
@@ -101,7 +101,7 @@ const getBichoByName = async (name) => {
 
 const createBicho = async (
   name,
-  health,
+  hp,
   attack,
   defense,
   speed,
@@ -116,7 +116,7 @@ const createBicho = async (
     //Creamos el bicho en la DB
     const newBicho = await Pokemon.create({
       name: name.toLocaleLowerCase(),
-      health: parseInt(health),
+      hp: parseInt(hp),
       attack: parseInt(attack),
       defense: parseInt(defense),
       speed: parseInt(speed),

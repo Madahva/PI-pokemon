@@ -16,7 +16,7 @@ module.exports = (sequelize) => {
         unique: true,
       },
 
-      health: {
+      hp: {
         defaultValue: 0,
         type: DataTypes.INTEGER,
         validate: { min: 0 },
