@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import css from "../assets/styles/Filter.module.css";
 import {
   searchByName,
@@ -13,6 +13,7 @@ import {
 
 const FilterBar = () => {
   const dispatch = useDispatch();
+  const searchError = useSelector((state) => state.error);
   const [searchValue, setSearchValue] = useState("");
   const [selectedFilter, setSelectedFilter] = useState("ALL");
   const [selectedSort, setSelectedSort] = useState("");
@@ -51,6 +52,7 @@ const FilterBar = () => {
   return (
     <div className={css.filterBar}>
       <form className={css["search"]} onSubmit={handleSubmit}>
+        {searchError && <span>{searchError}</span>}
         <input
           className={css["search__input"]}
           autoFocus

@@ -12,6 +12,7 @@ import {
   SORT_NAME,
   SORT_ATK,
   EMTYDETAILS,
+  SET_ERROR,
 } from "./actions.js";
 
 const initialState = {
@@ -21,7 +22,7 @@ const initialState = {
   currentPage: 1,
   itemsPerPage: 12,
   totalPages: [],
-
+  error: "",
   pokemonsBackUp: [],
 };
 
@@ -124,6 +125,13 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         pokemonDetail: [],
+        error: ""
+      };
+
+    case SET_ERROR:
+      return {
+        ...state,
+        error: action.payload + " is not a Pokemon.",
       };
 
     default:

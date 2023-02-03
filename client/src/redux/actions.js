@@ -15,6 +15,7 @@ export const SORT_NAME = "SORT_NAME";
 export const SORT_ATK = "SORT_ATK";
 
 export const EMTYDETAILS = "EMTYDETAILS";
+export const SET_ERROR = "SET_ERROR";
 
 export const getAllPokemons = () => {
   return async function (dispatch) {
@@ -99,7 +100,10 @@ export const searchByName = (name) => {
         payload: [data],
       });
     } catch (error) {
-      console.log({ error: error.message });
+      dispatch({
+        type: SET_ERROR,
+        payload: name,
+      })
     }
   };
 };

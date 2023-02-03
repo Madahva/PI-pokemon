@@ -17,6 +17,13 @@
   margin-top: 2rem;
 }
 
+.filterBar span {
+  color: #E5557D;
+  position: absolute;
+  top: 4rem;
+  margin: 0 auto;
+}
+
 .search__input {
   min-height: 40px;
   max-width: 150px;
