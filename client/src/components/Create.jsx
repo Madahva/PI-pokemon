@@ -14,6 +14,8 @@ const Create = () => {
     types: [],
   });
 
+  const [succestMsj, setSuccestMsj] = useState(false);
+
   const [error, setError] = useState({
     nameError: "",
     healthError: "",
@@ -35,7 +37,7 @@ const Create = () => {
         }
       }
     }
-    validate(event)
+    validate(event);
     setPokemon({
       ...pokemon,
       [name]: name === "types" ? selectedTypes : value,
@@ -63,7 +65,6 @@ const Create = () => {
     if (!pokemon.hp) {
       healthError = "HP is required";
     }
-  
 
     if (!pokemon.attack) {
       attackError = "Attack is required";
@@ -130,6 +131,8 @@ const Create = () => {
         console.log({ error: error.message });
       }
 
+      setSuccestMsj(true);
+
       setPokemon({
         name: "",
         image: "",
@@ -158,6 +161,13 @@ const Create = () => {
   return (
     <>
       <h1 className={css["create-tittle"]}>Create a new Pokemon</h1>
+      {succestMsj ? (
+        <div className={css.succestMessage}>
+          <p>¡Pokemon Created!</p>
+          <span>🐥</span>
+          <button onClick={() => setSuccestMsj(false)}>Continue</button>
+        </div>
+      ) : null}
       <div className={css["form-container"]}>
         <form className={css.form} action="POST" onSubmit={handleSubmit}>
           <label className={css.label}>
