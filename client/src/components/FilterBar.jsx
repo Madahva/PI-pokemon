@@ -1,6 +1,28 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import css from "../assets/styles/Filter.module.css";
+
+import normal from "../assets/images/types/normal.png";
+import fighting from "../assets/images/types/fighting.png";
+import flying from "../assets/images/types/flying.png";
+import poison from "../assets/images/types/poison.png";
+import ground from "../assets/images/types/ground.png";
+import rock from "../assets/images/types/rock.png";
+import ghost from "../assets/images/types/ghost.png";
+import bug from "../assets/images/types/bug.png";
+import steel from "../assets/images/types/steel.png";
+import fire from "../assets/images/types/fire.png";
+import water from "../assets/images/types/water.png";
+import grass from "../assets/images/types/grass.png";
+import electric from "../assets/images/types/electric.png";
+import psychic from "../assets/images/types/psychic.png";
+import ice from "../assets/images/types/ice.png";
+import dragon from "../assets/images/types/dragon.png";
+import dark from "../assets/images/types/dark.png";
+import fairy from "../assets/images/types/fairy.png";
+import unknown from "../assets/images/types/unknown.png";
+import shadow from "../assets/images/types/shadow.png";
+
 import {
   searchByName,
   getApiPokemons,
@@ -9,14 +31,40 @@ import {
   goToPage,
   sortName,
   sortAtk,
+  filterType,
 } from "../redux/actions.js";
 
 const FilterBar = () => {
+  const images = [
+    normal,
+    fighting,
+    flying,
+    poison,
+    ground,
+    rock,
+    bug,
+    ghost,
+    steel,
+    fire,
+    water,
+    grass,
+    electric,
+    psychic,
+    ice,
+    dragon,
+    dark,
+    fairy,
+    unknown,
+    shadow,
+  ];
+
   const dispatch = useDispatch();
   const searchError = useSelector((state) => state.error);
+  const types = useSelector((state) => state.types);
   const [searchValue, setSearchValue] = useState("");
   const [selectedFilter, setSelectedFilter] = useState("ALL");
   const [selectedSort, setSelectedSort] = useState("");
+  const [selectedType, setSelectedType] = useState("ALL");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -109,6 +157,23 @@ const FilterBar = () => {
         >
           &lt; ATK
         </button>
+      </div>
+
+      <div className={css["type-filter"]}>
+        {types &&
+          types.map((type, index) => (
+            <button
+              id={index}
+              key={index}
+              className={selectedType === type.name ? css.selectedSort : ""}
+              onClick={() => {
+                setSelectedType(type.name);
+                dispatch(filterType(type.name));
+              }}
+            >
+              <img src={images[index]} alt={type.name} />
+            </button>
+          ))}
       </div>
     </div>
   );

@@ -13,6 +13,7 @@ import {
   SORT_ATK,
   EMTYDETAILS,
   SET_ERROR,
+  FILTER_TYPE,
 } from "./actions.js";
 
 const initialState = {
@@ -121,11 +122,24 @@ export default function rootReducer(state = initialState, action) {
 
       return { ...state };
 
+    case FILTER_TYPE:
+      console.log(action.payload);
+      state.pokemons = state.pokemonsBackUp;
+      console.log(state.pokemons);
+      return {
+        ...state,
+        pokemons: state.pokemons.filter(
+          (pokemon) =>
+            pokemon.types[0].name === action.payload ||
+            pokemon?.types[1]?.name === action.payload
+        ),
+      };
+
     case EMTYDETAILS:
       return {
         ...state,
         pokemonDetail: [],
-        error: ""
+        error: "",
       };
 
     case SET_ERROR:

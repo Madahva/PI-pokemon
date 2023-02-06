@@ -13,6 +13,7 @@ export const GET_DB_POKEMONS = "GET_DB_POKEMONS";
 
 export const SORT_NAME = "SORT_NAME";
 export const SORT_ATK = "SORT_ATK";
+export const FILTER_TYPE = "FILTER_TYPE";
 
 export const EMTYDETAILS = "EMTYDETAILS";
 export const SET_ERROR = "SET_ERROR";
@@ -103,7 +104,7 @@ export const searchByName = (name) => {
       dispatch({
         type: SET_ERROR,
         payload: name,
-      })
+      });
     }
   };
 };
@@ -131,6 +132,13 @@ export const sortAtk = (ORDER) => {
   return {
     type: SORT_ATK,
     payload: ORDER,
+  };
+};
+
+export const filterType = (type) => {
+  return {
+    type: FILTER_TYPE,
+    payload: type,
   };
 };
 
