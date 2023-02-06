@@ -145,14 +145,12 @@ label:hover {
 
 select {
   width: 182px;
-  height: 42px;
   padding: 10px;
   font-size: 16px;
-  border: 2px solid #7c4dff;
+  border: 2px solid var(--dark-purple);
+  margin-top: .5rem;
   border-radius: 5px;
-  background-color: #fff;
-  appearance: none;
-  margin-bottom: 10px;
+  background-color: var(--yellow);
 }
 
 select:focus {

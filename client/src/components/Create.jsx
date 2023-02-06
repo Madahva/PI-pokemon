@@ -37,14 +37,13 @@ const Create = () => {
         }
       }
     }
-    validate(event);
     setPokemon({
       ...pokemon,
       [name]: name === "types" ? selectedTypes : value,
     });
   };
 
-  const validate = (event) => {
+  const validate = () => {
     let nameError = "";
     let typeError = "";
     let healthError = "";

@@ -14,10 +14,12 @@ const Home = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    if (pokemons.length === 0) {
     dispatch(getAllPokemons());
     dispatch(getAllTypes());
     dispatch(emtyDetails());
-  }, [dispatch]);
+    }
+  }, [dispatch, pokemons]);
 
   return (
     <>

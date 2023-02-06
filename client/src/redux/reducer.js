@@ -25,6 +25,11 @@ const initialState = {
   totalPages: [],
   error: "",
   pokemonsBackUp: [],
+  filter: {
+    apiOrDb: "ALL",
+    sort: "",
+    type: "",
+  },
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -32,6 +37,11 @@ export default function rootReducer(state = initialState, action) {
     case GET_ALL_POKEMONS:
       return {
         ...state,
+        filter: {
+          apiOrDb: "ALL",
+          sort: "",
+          type: "",
+        },
         pokemons: action.payload,
         pokemonsBackUp: action.payload,
       };
@@ -88,6 +98,10 @@ export default function rootReducer(state = initialState, action) {
       state.pokemons = state.pokemonsBackUp;
       return {
         ...state,
+        filter: {
+          ...state.filter,
+          apiOrDb: "API",
+        },
         pokemons: state.pokemons.filter(
           (pokemon) => typeof pokemon.id === "number"
         ),
@@ -97,6 +111,10 @@ export default function rootReducer(state = initialState, action) {
       state.pokemons = state.pokemonsBackUp;
       return {
         ...state,
+        filter: {
+          ...state.filter,
+          apiOrDb: "DB",
+        },
         pokemons: state.pokemons.filter(
           (pokemon) => typeof pokemon.id === "string"
         ),
@@ -110,8 +128,21 @@ export default function rootReducer(state = initialState, action) {
         action.payload === "MAYOR" ? ascendingName : descendingName;
       state.pokemons.sort(orderName);
 
-      return { ...state };
+      let sort;
 
+      if (action.payload === "MAYOR") {
+        sort = 1;
+      } else {
+        sort = 2;
+      }
+
+      return {
+        ...state,
+        filter: {
+          ...state.filter,
+          sort: sort,
+        },
+      };
     case SORT_ATK:
       const ascendingAtk = (a, b) => a.attack - b.attack;
       const descendingAtk = (a, b) => b.attack - a.attack;
@@ -120,12 +151,30 @@ export default function rootReducer(state = initialState, action) {
         action.payload === "MAYOR" ? descendingAtk : ascendingAtk;
       state.pokemons.sort(orderAtk);
 
-      return { ...state };
+      let atk;
+
+      if (action.payload === "MAYOR") {
+        atk = 3;
+      } else {
+        atk = 4;
+      }
+
+      return {
+        ...state,
+        filter: {
+          ...state.filter,
+          sort: atk,
+        },
+      };
 
     case FILTER_TYPE:
       state.pokemons = state.pokemonsBackUp;
       return {
         ...state,
+        filter: {
+          ...state.filter,
+          type: action.payload,
+        },
         pokemons: state.pokemons.filter(
           (pokemon) =>
             pokemon.types[0].name === action.payload ||

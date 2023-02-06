@@ -61,10 +61,11 @@ const FilterBar = () => {
   const dispatch = useDispatch();
   const searchError = useSelector((state) => state.error);
   const types = useSelector((state) => state.types);
+  const filter = useSelector((state) => state.filter);
   const [searchValue, setSearchValue] = useState("");
-  const [selectedFilter, setSelectedFilter] = useState("ALL");
-  const [selectedSort, setSelectedSort] = useState("");
-  const [selectedType, setSelectedType] = useState("ALL");
+  const [selectedFilter, setSelectedFilter] = useState(filter.apiOrDb);
+  const [selectedSort, setSelectedSort] = useState(filter.sort);
+  const [selectedType, setSelectedType] = useState(filter.type);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -77,6 +78,9 @@ const FilterBar = () => {
   const handleFilterClick = (selected) => {
     setSelectedFilter(selected);
     if (selected === "ALL") {
+      setSelectedFilter("ALL");
+      setSelectedSort("");
+      setSelectedType("");
       dispatch(goToPage(1));
       dispatch(getAllPokemons());
     } else if (selected === "API") {
@@ -113,12 +117,7 @@ const FilterBar = () => {
       </form>
 
       <div className={css.filter}>
-        <button
-          className={selectedFilter === "ALL" ? css.selectedFilter : ""}
-          onClick={() => handleFilterClick("ALL")}
-        >
-          ALL
-        </button>
+        <button onClick={() => handleFilterClick("ALL")}>RESET</button>
         <button
           className={selectedFilter === "API" ? css.selectedFilter : ""}
           onClick={() => handleFilterClick("API")}
