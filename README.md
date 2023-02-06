@@ -1,5 +1,5 @@
 # Pokedex-SPA
-This is a React SPA and CRUD application with certain features such as: Filter, Sort ,Fetching Data, Responsive, etc.
+This is a React <strong>SPA</strong> and <strong>CRUD</strong> application with certain features such as: Pagination, Filter, Sort, Fetching Data, Responsive, etc.
     
 ## Built with
 - React
