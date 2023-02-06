@@ -169,6 +169,7 @@ const FilterBar = () => {
               onClick={() => {
                 setSelectedType(type.name);
                 dispatch(filterType(type.name));
+                dispatch(goToPage(1));
               }}
             >
               <img src={images[index]} alt={type.name} />

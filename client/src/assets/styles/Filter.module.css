@@ -11,17 +11,14 @@
   background-color: var(--dark-purple);
 }
 
+.selectedFilter:hover, .selectedSort:hover {
+    background-color: var(--dark-purple);
+  }
+
 .search {
   display: flex;
   align-items: center;
   margin-top: 2rem;
-}
-
-.filterBar span {
-  color: #E5557D;
-  position: absolute;
-  top: 4rem;
-  margin: 0 auto;
 }
 
 .search__input {
@@ -94,11 +91,12 @@
   justify-content: center;
   flex-wrap: wrap;
   max-width: 100vw;
+  padding: 1rem 0;
 }
 
 .type-filter button {
   border: 1px solid transparent;
-  border-radius: 0;
+  border-radius: .5rem;
 }
 
 .type-filter img {
@@ -117,6 +115,10 @@
 
   .sort button {
     min-width: 150px;
+  }
+
+  .type-filter {
+    padding: 1rem 10rem;
   }
 }
 

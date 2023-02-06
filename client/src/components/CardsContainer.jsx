@@ -14,7 +14,7 @@ const CardsContainer = ({ pokemons }) => {
     <div className={css["cards-container"]}>
       {!itemsToShow.length ? (
         <div className={css.noFound}>
-          <h1>There are no pokemons created in the database.</h1>
+          <h1>There are no pokemons to show.</h1>
           <img src={image} alt="Pokeball"/>
         </div>
       ) : (

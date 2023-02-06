@@ -123,9 +123,7 @@ export default function rootReducer(state = initialState, action) {
       return { ...state };
 
     case FILTER_TYPE:
-      console.log(action.payload);
       state.pokemons = state.pokemonsBackUp;
-      console.log(state.pokemons);
       return {
         ...state,
         pokemons: state.pokemons.filter(
