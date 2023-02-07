@@ -14,7 +14,7 @@ const Home = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (pokemons.length === 0) {
+    if (pokemons) {
     dispatch(getAllPokemons());
     dispatch(getAllTypes());
     dispatch(emtyDetails());

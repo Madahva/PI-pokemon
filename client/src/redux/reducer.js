@@ -1,5 +1,6 @@
 import {
   GET_ALL_POKEMONS,
+  RESET_POKEMONS,
   GET_ALL_TYPES,
   GET_POKEMON_BY_ID,
   PREV_PAGE,
@@ -35,6 +36,16 @@ const initialState = {
 export default function rootReducer(state = initialState, action) {
   switch (action.type) {
     case GET_ALL_POKEMONS:
+      if (state.pokemonsBackUp.length === 0) {
+        return {
+          ...state,
+          pokemons: action.payload,
+          pokemonsBackUp: action.payload,
+        };
+      }
+      return { ...state };
+
+    case RESET_POKEMONS:
       return {
         ...state,
         filter: {
@@ -42,8 +53,7 @@ export default function rootReducer(state = initialState, action) {
           sort: "",
           type: "",
         },
-        pokemons: action.payload,
-        pokemonsBackUp: action.payload,
+        pokemons: state.pokemonsBackUp,
       };
 
     case GET_ALL_TYPES:

@@ -27,7 +27,7 @@ import {
   searchByName,
   getApiPokemons,
   getDbPokemons,
-  getAllPokemons,
+  resetPokemons,
   goToPage,
   sortName,
   sortAtk,
@@ -79,10 +79,10 @@ const FilterBar = () => {
     setSelectedFilter(selected);
     if (selected === "ALL") {
       setSelectedFilter("ALL");
-      setSelectedSort("");
       setSelectedType("");
+      setSelectedSort("");
       dispatch(goToPage(1));
-      dispatch(getAllPokemons());
+      dispatch(resetPokemons());
     } else if (selected === "API") {
       dispatch(goToPage(1));
       dispatch(getApiPokemons());

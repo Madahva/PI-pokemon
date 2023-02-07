@@ -1,4 +1,5 @@
 export const GET_ALL_POKEMONS = "GET_ALL_POKEMONS";
+export const RESET_POKEMONS = "RESET_POKEMONS";
 export const GET_ALL_TYPES = "GET_ALL_TYPES";
 export const GET_POKEMON_BY_ID = "GET_POKEMON_BY_ID";
 
@@ -30,6 +31,12 @@ export const getAllPokemons = () => {
     } catch (error) {
       console.log({ error: error.message });
     }
+  };
+};
+
+export const resetPokemons = () => {
+  return {
+    type: RESET_POKEMONS,
   };
 };
 
