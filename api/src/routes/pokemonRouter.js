@@ -24,6 +24,7 @@ pokemonRouter.get("/", async (req, res) => {
       res.status(200).send(bichos);
     }
   } catch (error) {
+    console.log(error)
     res.status(500).send(error);
   }
 });

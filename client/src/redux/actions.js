@@ -19,10 +19,12 @@ export const FILTER_TYPE = "FILTER_TYPE";
 export const EMTYDETAILS = "EMTYDETAILS";
 export const SET_ERROR = "SET_ERROR";
 
+const URL = "https://pokedex-back-end-production.up.railway.app/";
+
 export const getAllPokemons = () => {
   return async function (dispatch) {
     try {
-      const response = await fetch("http://localhost:3001/pokemon");
+      const response = await fetch(`${URL}pokemon`);
       const data = await response.json();
       dispatch({
         type: GET_ALL_POKEMONS,
@@ -43,7 +45,7 @@ export const resetPokemons = () => {
 export const getAllTypes = () => {
   return async function (dispatch) {
     try {
-      const response = await fetch("http://localhost:3001/type");
+      const response = await fetch(`${URL}type`);
       const data = await response.json();
       dispatch({
         type: GET_ALL_TYPES,
@@ -58,7 +60,7 @@ export const getAllTypes = () => {
 export const getPokemonByID = (id) => {
   return async function (dispatch) {
     try {
-      const response = await fetch(`http://localhost:3001/pokemon/${id}`);
+      const response = await fetch(`${URL}pokemon/${id}`);
       const data = await response.json();
       dispatch({
         type: GET_POKEMON_BY_ID,
@@ -100,7 +102,7 @@ export const searchByName = (name) => {
   return async function (dispatch) {
     try {
       const response = await fetch(
-        `http://localhost:3001/pokemon?name=${name.trim()}`
+        `${URL}pokemon?name=${name.trim()}`
       );
       const data = await response.json();
       dispatch({

@@ -118,7 +118,7 @@ const Create = () => {
     const isValid = validate();
     if (isValid) {
       try {
-        await fetch("http://localhost:3001/pokemon", {
+        await fetch("https://pokedex-back-end-production.up.railway.app/pokemon", {
           method: "POST",
           headers: {
             Accept: "application/json",
