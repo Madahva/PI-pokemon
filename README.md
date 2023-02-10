@@ -15,6 +15,8 @@ This is a React <strong>SPA</strong> and <strong>CRUD</strong> application with 
 - Postgres
 - SQL
 
+### 🔗 You can see the deploy here: https://pokedex-pi.netlify.app/
+
 <br><br/>
  <img src="https://user-images.githubusercontent.com/89199369/217062793-792c840b-fbba-440b-a257-e4ae4d0faac9.png">
 <br><br/>
