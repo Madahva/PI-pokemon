@@ -4,7 +4,6 @@ This is a React <strong>SPA</strong> and <strong>CRUD</strong> application with 
 ## Built with
 - React
 - Redux
-- Semantic HTML5 markup
 - CSS Flexbox
 - Mobile-first workflow
 - API
