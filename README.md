@@ -6,13 +6,12 @@ This is a React <strong>SPA</strong> and <strong>CRUD</strong> application with 
 - Redux
 - CSS Flexbox
 - Mobile-first workflow
-- API
+- API Rest
 - Figma
 - Node.js
 - Express
 - Sequelize
-- Postgres
-- SQL
+- PostgreSQL
 
 ### 🔗 You can see the deploy here: https://pokedex-pi.netlify.app/
 
